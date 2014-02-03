@@ -1,0 +1,12 @@
+<h1>SHORTLY</h1>
+<input type="text" ng-model="search" placeholder="Enter search terms here">
+<select ng-model="filter">
+  <option value="visits">Visit count</option>
+  <option value="created_at">Latest</option>
+  <option value="updated_at">Hottest</option>
+</select>
+<!-- {{ links }} -->
+<div ng-repeat="link in links | orderBy: filter | filter:search" class="link"> 
+  <h2> {{ link.title }}</h2>
+  <a href="{{ link.code }}">{{ link.url }}</a> {{ link.visits }} <a href="#/linkstats/{{ link.code }}">Link Stats</a>
+</div>

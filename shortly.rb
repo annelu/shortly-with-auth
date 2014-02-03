@@ -74,7 +74,7 @@ end
 
 ['/', "/create", "/links"].each do |path|
     before path do
-        redirect('/login') unless logged_in?
+        # redirect('/login') unless logged_in?
         # halt [401, {error: 'No token'}.to_json] unless logged_in? || api_user?
     end
 end
@@ -84,8 +84,8 @@ end
 ###########################################################
 
 get '/' do
-    erb :index
-    # File.read(File.join('public', 'index.html'))
+    # erb :index
+    File.read(File.join('public', 'index.html'))
 end
 
 get '/login' do
@@ -163,6 +163,11 @@ post '/links' do
     link = Link.find_by_url(uri.to_s) ||
            Link.create( url: uri.to_s, title: get_url_title(uri) )
     link.as_json.merge(base_url: request.base_url).to_json
+end
+
+get '/api/:url' do
+  link = Link.find_by_code params[:url]
+  link.clicks.to_json    
 end
 
 get '/:url' do

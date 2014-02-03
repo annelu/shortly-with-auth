@@ -1,0 +1,13 @@
+<h1>Shorten</h1>
+<form name="shortenForm">
+  <input type="url" ng-model="link.url"></input>
+  <button ng-click="postit()" ng-disabled="shortenForm.$invalid">Submit</button>
+
+  <span class="error" ng-show="shortenForm.input.$error.required">
+    Required!
+  </span>
+  <span class="error" ng-show="shortenForm.input.$error.url">
+    Not valid url!
+  </span>
+  
+</form>
